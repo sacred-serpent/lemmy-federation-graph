@@ -26,6 +26,21 @@ pub struct Parameters {
     /// Number of crawl jobs to run in parallel
     #[structopt(short, long, default_value = "100")]
     pub jobs_count: u32,
+    /// URI of the neo4j instance to store results in. Leave empty to not store results
+    #[structopt(long, default_value = None)]
+    pub neo4j_uri: Option<String>,
+    /// neo4j DB name to store results in
+    #[structopt(long, default_value = "neo4j")]
+    pub neo4j_db: String,
+    /// Username for the neo4j instance
+    #[structopt(long, default_value = "neo4j")]
+    pub neo4j_user: String,
+    /// Password for the neo4j instance
+    #[structopt(long, default_value = "neo4j")]
+    pub neo4j_password: String,
+    /// Number of neo4j store jobs to run in parallel
+    #[structopt(long, default_value = "50")]
+    pub store_jobs_count: u32,
     /// Log verbosity, 0 -> Error 1 -> Warn 2 -> Info 3 -> Debug 4 or higher -> Trace
     #[structopt(short, long, default_value = "2")]
     verbose: usize,
@@ -49,6 +64,11 @@ pub async fn main() -> Result<(), Error> {
         params.start_instances,
         params.exclude_instances,
         params.jobs_count,
+        params.store_jobs_count,
+        params.neo4j_uri,
+        params.neo4j_db,
+        params.neo4j_user,
+        params.neo4j_password,
         params.max_crawl_distance,
     )
     .await?;
