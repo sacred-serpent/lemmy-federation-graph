@@ -39,7 +39,7 @@ pub struct Parameters {
     #[structopt(long, default_value = "neo4j")]
     pub neo4j_password: String,
     /// Number of neo4j store jobs to run in parallel
-    #[structopt(long, default_value = "50")]
+    #[structopt(long, default_value = "16")]
     pub store_jobs_count: u32,
     /// Log verbosity, 0 -> Error 1 -> Warn 2 -> Info 3 -> Debug 4 or higher -> Trace
     #[structopt(short, long, default_value = "2")]
