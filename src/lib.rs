@@ -115,14 +115,15 @@ async fn background_task(
 /// 0.16.3, the minimum from this function is 0.15.3. this is to avoid rejecting all instances on
 /// the previous version when a major lemmy release is published.
 async fn min_lemmy_version() -> Result<Version, Error> {
-    let lemmy_version_url = "https://raw.githubusercontent.com/LemmyNet/lemmy-ansible/main/VERSION";
-    let req = CLIENT
-        .get(lemmy_version_url)
-        .timeout(REQUEST_TIMEOUT)
-        .send()
-        .await?;
-    let mut version = Version::parse(req.text().await?.trim())?;
-    version.minor -= 1;
+    // let lemmy_version_url = "https://raw.githubusercontent.com/LemmyNet/lemmy-ansible/main/VERSION";
+    // let req = CLIENT
+    //     .get(lemmy_version_url)
+    //     .timeout(REQUEST_TIMEOUT)
+    //     .send()
+    //     .await?;
+    //req.text().await?.trim()
+    let version = Version::parse("0.1.0")?;
+    // version.minor -= 1;
     Ok(version)
 }
 
